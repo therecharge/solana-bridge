@@ -11,7 +11,7 @@ var Bridge_Info = {
     SOL_DEV: {
       from_token: "0x2D94172436D869c1e3c094BeaD272508faB0d9E3", // token contract
       bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
-      to_token: "GHnBJEFktjZrpQ2BpUv9Fjg7xsvsGtFyHEYVw6y5QkWS", //solana token id
+      to_token: "7MSNCihCuVurNDNuVFEYpvod5PaBp3XTjA3obtb8168f", //solana token id
       to_network: "devnet",
     },
   },
@@ -19,13 +19,13 @@ var Bridge_Info = {
     SOL: {
       from_token: "0x2D94172436D869c1e3c094BeaD272508faB0d9E3", // token contract
       bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
-      to_token: "GHnBJEFktjZrpQ2BpUv9Fjg7xsvsGtFyHEYVw6y5QkWS", //solana token id
+      to_token: "23D98JuQaFSipa5qu19xrrwUniS8hER5otz3a3o6xaLD", //solana token id
       to_network: "mainnet",
     },
     SOL_DEV: {
       from_token: "0x2D94172436D869c1e3c094BeaD272508faB0d9E3", // token contract
       bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
-      to_token: "GHnBJEFktjZrpQ2BpUv9Fjg7xsvsGtFyHEYVw6y5QkWS", //solana token id
+      to_token: "7MSNCihCuVurNDNuVFEYpvod5PaBp3XTjA3obtb8168f", //solana token id
       to_network: "devnet",
     },
   },
@@ -33,7 +33,7 @@ var Bridge_Info = {
     SOL: {
       from_token: "0xe74bE071f3b62f6A4aC23cA68E5E2A39797A3c30", // token contract
       bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
-      to_token: "GHnBJEFktjZrpQ2BpUv9Fjg7xsvsGtFyHEYVw6y5QkWS", //solana token id
+      to_token: "23D98JuQaFSipa5qu19xrrwUniS8hER5otz3a3o6xaLD", //solana token id
       to_network: "mainnet",
     },
   },
