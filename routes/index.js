@@ -88,6 +88,7 @@ router.post("/submission", async function (req, res, next) {
     new Web3.providers.HttpProvider(process.env[`RPC_${chain[_from]}`])
   );
   const tx_info = await web3.eth.getTransaction(txid);
+  console.table(tx_info);
   const { toChecksumAddress, hexToNumberString, fromWei, toWei } = web3.utils;
 
   const toAmount = (raw) => {
