@@ -22,6 +22,12 @@ var Bridge_Info = {
       to_token: "GHnBJEFktjZrpQ2BpUv9Fjg7xsvsGtFyHEYVw6y5QkWS", //solana token id
       to_network: "mainnet",
     },
+    SOL_DEV: {
+      from_token: "0x2D94172436D869c1e3c094BeaD272508faB0d9E3", // token contract
+      bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
+      to_token: "GHnBJEFktjZrpQ2BpUv9Fjg7xsvsGtFyHEYVw6y5QkWS", //solana token id
+      to_network: "devnet",
+    },
   },
   ETH: {
     SOL: {

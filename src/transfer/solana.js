@@ -36,11 +36,12 @@ module.exports = async (tokenId, toPubkey, amount) => {
   //get the token account of the toWallet Solana address, if it does not exist, create it
   const toTokenAccount = await token.getOrCreateAssociatedAccountInfo(toWallet);
 
+  // await mint.mintTo(fromTokenAccount.address, fromWallet.publicKey, [], amount);
   // Add token transfer instructions to transaction
   const transaction = new web3.Transaction().add(
-    splToken.Token.createTransferInstruction(
+    splToken.Token.createMintToInstruction(
       splToken.TOKEN_PROGRAM_ID,
-      fromTokenAccount.address,
+      new web3.PublicKey(tokenId),
       toTokenAccount.address,
       fromWallet.publicKey,
       [],
@@ -55,6 +56,7 @@ module.exports = async (tokenId, toPubkey, amount) => {
     [fromWallet],
     { commitment: "confirmed" }
   );
+
   console.log("SIGNATURE", signature);
   return signature;
 };
