@@ -19,8 +19,8 @@ var Bridge_Info = {
     SOL: {
       from_token: "0x2D94172436D869c1e3c094BeaD272508faB0d9E3", // token contract
       bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
-      to_token: "23D98JuQaFSipa5qu19xrrwUniS8hER5otz3a3o6xaLD", //solana token id
-      to_network: "mainnet",
+      to_token: "3TM1bok2dpqR674ubX5FDQZtkyycnx1GegRcd13pQgko", //solana token id
+      to_network: "mainnet-beta",
     },
     SOL_DEV: {
       from_token: "0x2D94172436D869c1e3c094BeaD272508faB0d9E3", // token contract
@@ -33,8 +33,8 @@ var Bridge_Info = {
     SOL: {
       from_token: "0xe74bE071f3b62f6A4aC23cA68E5E2A39797A3c30", // token contract
       bridge_address: "0x92eFc3407dF604F78be02b8a1133CEC421e9680E", // bridge address
-      to_token: "23D98JuQaFSipa5qu19xrrwUniS8hER5otz3a3o6xaLD", //solana token id
-      to_network: "mainnet",
+      to_token: "3TM1bok2dpqR674ubX5FDQZtkyycnx1GegRcd13pQgko", //solana token id
+      to_network: "mainnet-beta",
     },
   },
 };
@@ -126,7 +126,12 @@ router.post("/submission", async function (req, res, next) {
   Sol_amount = toWei(Sol_amount, "gwei");
 
   // res.send(Sol_amount)
-  const ret_txid = await transfer_sol(to_token, address[_to], Sol_amount);
+  const ret_txid = await transfer_sol(
+    to_token,
+    address[_to],
+    Sol_amount,
+    to_network
+  );
   res.send({ id: ret_txid });
 });
 
