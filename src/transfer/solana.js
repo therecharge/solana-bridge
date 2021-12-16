@@ -2,7 +2,7 @@ const web3 = require("@solana/web3.js");
 const splToken = require("@solana/spl-token");
 require("dotenv").config();
 
-module.exports = async (toPubkey, amount) => {
+module.exports = async (tokenId, toPubkey, amount) => {
   // Connect to cluster
   const connection = new web3.Connection(
     web3.clusterApiUrl(process.env.SOL_NETWORK),
@@ -13,28 +13,28 @@ module.exports = async (toPubkey, amount) => {
   const SECRET_KEY = new Uint8Array(
     JSON.parse(`[${process.env.SOL_SECRET_KEY}]`)
   );
-  
+
   // Generate a new wallet keypair and airdrop SOL
   var fromWallet = web3.Keypair.fromSecretKey(SECRET_KEY);
 
-  // Generate a new wallet to receive newly minted token
+  // Generate a new wallet to receive newly token
   const toWallet = new web3.PublicKey(toPubkey);
 
   // Create new token mint
-  const mint = new splToken.Token(
+  const token = new splToken.Token(
     connection,
-    new web3.PublicKey(process.env.SOL_TOKEN_ID),
+    new web3.PublicKey(tokenId),
     splToken.TOKEN_PROGRAM_ID,
     fromWallet
   );
 
   // Get the token account of the fromWallet Solana address, if it does not exist, create it
-  const fromTokenAccount = await mint.getOrCreateAssociatedAccountInfo(
+  const fromTokenAccount = await token.getOrCreateAssociatedAccountInfo(
     fromWallet.publicKey
   );
 
   //get the token account of the toWallet Solana address, if it does not exist, create it
-  const toTokenAccount = await mint.getOrCreateAssociatedAccountInfo(toWallet);
+  const toTokenAccount = await token.getOrCreateAssociatedAccountInfo(toWallet);
 
   // Add token transfer instructions to transaction
   const transaction = new web3.Transaction().add(
