@@ -75,7 +75,7 @@ router.post("/submission", async function (req, res, next) {
     res.send("Id incorrect");
     return;
   }
-  const { chain, address, spent } = DB.recipes[id];
+  const { chain, address } = DB.recipes[id];
 
   if (DB.spent[txid]) {
     // Is RCG Token
