@@ -1,7 +1,7 @@
 var express = require("express");
 var Web3 = require("web3");
 var router = express.Router();
-var transfer_sol = require("../src/transfer/solana");
+var transfer_sol = require("../src/withdraw/solana");
 require("dotenv").config();
 
 var _from = 0,
@@ -43,7 +43,7 @@ var DB = {
   spent: {},
 };
 
-/* GET home page. */
+
 router.post("/create", function (req, res, next) {
   const { chain, address } = req.body;
   const { from_token, to_token, bridge_address, to_network } =
@@ -60,7 +60,6 @@ router.post("/create", function (req, res, next) {
   console.log("/create", id);
   console.table(req.body);
 
-  // res.render("index", { title: "Express" });
   res.send(
     JSON.stringify({
       id: id,
@@ -69,7 +68,7 @@ router.post("/create", function (req, res, next) {
   );
 });
 
-/* GET home page. */
+
 router.post("/submission", async function (req, res, next) {
   const { id, txid } = req.body;
   if (!DB.recipes[id]) {
