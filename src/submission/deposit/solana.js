@@ -17,7 +17,7 @@ module.exports = async (chain, txid) => {
 
   const tx_info = await connection.getTransaction(txid);
 
-  // console.log(JSON.stringify(tx_info));
+  console.log(JSON.stringify(tx_info));
   const pre = tx_info.meta.preTokenBalances;
   const post = tx_info.meta.postTokenBalances;
 
