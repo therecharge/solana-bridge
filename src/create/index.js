@@ -1,5 +1,5 @@
 const Bridge_Info = require("../lib/Bridge_Info.json");
-const DB = require("../lib/DB.js");
+const DB = require("../lib/db.js");
 
 const _from = 0,
   _to = 1;
