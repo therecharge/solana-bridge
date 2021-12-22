@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const _from = 0,
   _to = 1;
-module.exports = async (chain, txid) => {
+module.exports = async (chain, txid, res) => {
   const web3 = new Web3(
     new Web3.providers.HttpProvider(process.env[`RPC_${chain[_from]}`])
   );
@@ -26,6 +26,7 @@ module.exports = async (chain, txid) => {
   const amount = toAmount(raw_amount);
   if (to != from_token) {
     // Is RCG Token
+    console.log("to", to);
     res.send("Not RCG Token");
     return;
   }

@@ -6,6 +6,7 @@ require("dotenv").config();
 const _from = 0,
   _to = 1;
 module.exports = async (tokenId, toPubkey, amount, _, chain) => {
+  console.log("withdraw/ethereum");
   const web3 = new Web3(
     new Web3.providers.HttpProvider(process.env[`RPC_${chain[_to]}`])
   );
@@ -29,7 +30,7 @@ module.exports = async (tokenId, toPubkey, amount, _, chain) => {
     .transfer(toPubkey, amount)
     .estimateGas({ from: account.address });
 
-  console.log({ toPubkey, amount });
+  // console.log({ toPubkey, amount });
   const tx = await TOKEN.methods
     .transfer(toPubkey, amount)
     .send({ from: account.address, gasPrice: gasPrice, gas: gasEstimate });

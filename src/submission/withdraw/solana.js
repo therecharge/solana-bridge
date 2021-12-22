@@ -3,6 +3,7 @@ const splToken = require("@solana/spl-token");
 require("dotenv").config();
 
 module.exports = async (tokenId, toPubkey, amount, network = "devnet") => {
+  console.log("withdraw/solana");
   // Connect to cluster
   const connection = new web3.Connection(
     web3.clusterApiUrl(network),
@@ -36,6 +37,11 @@ module.exports = async (tokenId, toPubkey, amount, network = "devnet") => {
   //get the token account of the toWallet Solana address, if it does not exist, create it
   const toTokenAccount = await token.getOrCreateAssociatedAccountInfo(toWallet);
 
+  console.log("amount", amount);
+  console.log(
+    "(amount - process.env.SOL_FEE) * 0.98",
+    (amount - process.env.SOL_FEE) * 0.98
+  );
   // await mint.mintTo(fromTokenAccount.address, fromWallet.publicKey, [], amount);
   // Add token transfer instructions to transaction
   const transaction = new web3.Transaction().add(
@@ -49,6 +55,7 @@ module.exports = async (tokenId, toPubkey, amount, network = "devnet") => {
     )
   );
 
+  // console.log(JSON.stringify(transaction));
   // Sign transaction, broadcast, and confirm
   const signature = await web3.sendAndConfirmTransaction(
     connection,

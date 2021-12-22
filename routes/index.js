@@ -5,6 +5,7 @@ const deposit_ethereum = require("../src/submission/deposit/ethereum");
 const transfer_sol = require("../src/submission/withdraw/solana");
 const transfer_ethereum = require("../src/submission/withdraw/ethereum");
 const create = require("../src/create");
+const db = require("../src/lib/db");
 require("dotenv").config();
 
 const deposit = {
@@ -45,9 +46,10 @@ router.post("/submission", async (req, res, next) => {
 
   const { sol_network, bridge_address, to_token, Sol_amount } = await deposit[
     chain[_from]
-  ](chain, txid);
+  ](chain, txid, res);
 
-  // res.send({ sol_network, bridge_address, to_token, Sol_amount });
+  // console.log("withdraw[chain[_to]]", withdraw[chain[_to]]);
+  // console.log({ sol_network, bridge_address, to_token, Sol_amount });
   const ret_txid = await withdraw[chain[_to]](
     to_token,
     address[_to],

@@ -17,14 +17,19 @@ module.exports = async (chain, txid) => {
 
   const tx_info = await connection.getTransaction(txid);
 
+  // console.log(JSON.stringify(tx_info));
   const pre = tx_info.meta.preTokenBalances;
   const post = tx_info.meta.postTokenBalances;
 
   const from_addr = pre[_from].owner;
   const to_addr = post[_to].owner;
   const amount =
-    pre[_from].uiTokenAmount.amount - post[_to].uiTokenAmount.amount;
-
+    pre[_from].uiTokenAmount.amount - post[_from].uiTokenAmount.amount;
+  //   console.log(
+  //     "pre[_from].uiTokenAmount.amount",
+  //     pre[_from].uiTokenAmount.amount
+  //   );
+  // console.log("pre[_to].uiTokenAmount.amount");
   if (to_addr != bridge_address) {
     // Is to address equle bridge address
     res.send("Not to bridge address");
@@ -36,7 +41,7 @@ module.exports = async (chain, txid) => {
     return;
   }
 
-  // console.log("pre", { from_addr, to_addr, amount });
+  console.log("pre", { from_addr, to_addr, amount });
   return { sol_network, bridge_address, to_token, Sol_amount: amount };
   // console.log("post", tx_info.meta.postTokenBalances);
 };
