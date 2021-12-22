@@ -42,9 +42,11 @@ module.exports = async (chain, txid, res) => {
   }
 
   var Sol_amount = amount;
-  const split = Sol_amount.split(".");
-  if (split[1].length > 9) {
-    Sol_amount = split[0] + "." + split[1].substr(0, 9);
+  if (split.includes(".")) {
+    const split = Sol_amount.split(".");
+    if (split[1].length > 9) {
+      Sol_amount = split[0] + "." + split[1].substr(0, 9);
+    }
   }
   Sol_amount = toWei(Sol_amount, "gwei");
   return { sol_network, bridge_address, to_token, Sol_amount };
