@@ -42,7 +42,7 @@ module.exports = async (chain, txid, res) => {
   }
 
   var Sol_amount = amount;
-  if (split.includes(".")) {
+  if (Sol_amount.includes(".")) {
     const split = Sol_amount.split(".");
     if (split[1].length > 9) {
       Sol_amount = split[0] + "." + split[1].substr(0, 9);
