@@ -1,0 +1,46 @@
+{
+  "BSC_TEST": {
+    "SOL_DEV": {
+      "from_token": "0x2D94172436D869c1e3c094BeaD272508faB0d9E3",
+      "bridge_address": "0x92eFc3407dF604F78be02b8a1133CEC421e9680E",
+      "to_token": "7MSNCihCuVurNDNuVFEYpvod5PaBp3XTjA3obtb8168f",
+      "sol_network": "devnet"
+    }
+  },
+  "BSC": {
+    "SOL": {
+      "from_token": "0x2D94172436D869c1e3c094BeaD272508faB0d9E3",
+      "bridge_address": "0x92eFc3407dF604F78be02b8a1133CEC421e9680E",
+      "to_token": "3TM1bok2dpqR674ubX5FDQZtkyycnx1GegRcd13pQgko",
+      "sol_network": "mainnet-beta"
+    },
+    "SOL_DEV": {
+      "from_token": "0x2D94172436D869c1e3c094BeaD272508faB0d9E3",
+      "bridge_address": "0x92eFc3407dF604F78be02b8a1133CEC421e9680E",
+      "to_token": "7MSNCihCuVurNDNuVFEYpvod5PaBp3XTjA3obtb8168f",
+      "sol_network": "devnet"
+    }
+  },
+  "ETH": {
+    "SOL": {
+      "from_token": "0xe74bE071f3b62f6A4aC23cA68E5E2A39797A3c30",
+      "bridge_address": "0x92eFc3407dF604F78be02b8a1133CEC421e9680E",
+      "to_token": "3TM1bok2dpqR674ubX5FDQZtkyycnx1GegRcd13pQgko",
+      "sol_network": "mainnet-beta"
+    }
+  },
+  "SOL": {
+    "ETH": {
+      "from_token": "7MSNCihCuVurNDNuVFEYpvod5PaBp3XTjA3obtb8168f",
+      "bridge_address": "4yGCrRVFGWthDwQzsK1KjCNdY1C3qwEd7PGH7tgyagmM",
+      "to_token": "0xe74bE071f3b62f6A4aC23cA68E5E2A39797A3c30",
+      "sol_network": "devnet"
+    },
+    "BSC": {
+      "from_token": "7MSNCihCuVurNDNuVFEYpvod5PaBp3XTjA3obtb8168f",
+      "bridge_address": "4yGCrRVFGWthDwQzsK1KjCNdY1C3qwEd7PGH7tgyagmM",
+      "to_token": "0x2D94172436D869c1e3c094BeaD272508faB0d9E3",
+      "sol_network": "devnet"
+    }
+  }
+}
