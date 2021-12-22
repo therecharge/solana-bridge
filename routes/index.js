@@ -30,7 +30,7 @@ router.post("/create", create(DB));
 
 router.post("/submission", async (req, res, next) => {
   const { id, txid } = req.body;
-  console.log("asdf", DB);
+  // console.log("asdf", DB);
   if (!DB.recipes[id]) {
     res.send("Id incorrect");
     return;
