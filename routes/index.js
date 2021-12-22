@@ -53,7 +53,7 @@ router.post("/submission", async (req, res, next) => {
     address[_to],
     Sol_amount,
     sol_network,
-    chain[_to]
+    chain
   );
   res.send({ id: ret_txid });
 });

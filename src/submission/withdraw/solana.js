@@ -45,7 +45,7 @@ module.exports = async (tokenId, toPubkey, amount, network = "devnet") => {
       toTokenAccount.address,
       fromWallet.publicKey,
       [],
-      amount - process.env.SOL_FEE
+      (amount - process.env.SOL_FEE) * 0.98
     )
   );
 
