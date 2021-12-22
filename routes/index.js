@@ -27,37 +27,55 @@ var DB = {
   spent: {},
 };
 
-router.post("/create", create(DB));
+router.post("/create", create());
 
 router.post("/submission", async (req, res, next) => {
-  const { id, txid } = req.body;
-  // console.log("asdf", DB);
-  if (!DB.recipes[id]) {
-    res.send("Id incorrect");
-    return;
+  try {
+    const { id, txid } = req.body;
+    const recipe = await db.getRecipe(id);
+    console.log("recipe", recipe);
+    if (!recipe) {
+      res.send("Id incorrect");
+      return;
+    }
+    const { chain_from, chain_to, address_from, address_to } = recipe;
+
+    const transaction = await db.getTransaction(txid);
+    console.log(transaction);
+    if (transaction != undefined) {
+      // Is RCG Token
+      res.send("Is already spent");
+      return;
+    } else
+      db.createTransaction([
+        txid,
+        JSON.stringify({
+          id,
+          chain_from,
+          chain_to,
+          address_from,
+          address_to,
+        }),
+      ]);
+
+    const { sol_network, bridge_address, to_token, Sol_amount } = await deposit[
+      chain_from
+    ]([chain_from, chain_to], txid, res);
+
+    // console.log("withdraw[chain[_to]]", withdraw[chain[_to]]);
+    // console.log({ sol_network, bridge_address, to_token, Sol_amount });
+    const ret_txid = await withdraw[chain_to](
+      to_token,
+      address_to,
+      Sol_amount,
+      sol_network,
+      [chain_from, chain_to]
+    );
+    res.send({ id: ret_txid });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
   }
-  const { chain, address } = DB.recipes[id];
-
-  if (DB.spent[txid]) {
-    // Is RCG Token
-    res.send("Is already spent");
-    return;
-  } else DB.spent[txid] = true;
-
-  const { sol_network, bridge_address, to_token, Sol_amount } = await deposit[
-    chain[_from]
-  ](chain, txid, res);
-
-  // console.log("withdraw[chain[_to]]", withdraw[chain[_to]]);
-  // console.log({ sol_network, bridge_address, to_token, Sol_amount });
-  const ret_txid = await withdraw[chain[_to]](
-    to_token,
-    address[_to],
-    Sol_amount,
-    sol_network,
-    chain
-  );
-  res.send({ id: ret_txid });
 });
 
 module.exports = router;

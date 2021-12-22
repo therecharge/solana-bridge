@@ -10,44 +10,40 @@ const client = new Client({
 
 client.connect();
 
-createRecipe = (values, callback = () => {}) => {
-  client.query(
+createRecipe = async (values) => {
+  const result = await client.query(
     "INSERT INTO recipe(chain_from, chain_to, address_from, address_to) VALUES($1, $2, $3, $4) RETURNING *",
-    values,
-    callback
+    values
   );
+  return result.rows[0].id;
 };
 
-getRecipe = (id, callback = () => {}) => {
-  client.query(
-    {
-      // give the query a unique name
-      name: "fetch-user",
-      text: "SELECT * FROM recipe WHERE id = $1",
-      values: [id],
-    },
-    callback
-  );
+getRecipe = async (id, callback = undefined) => {
+  const result = await client.query({
+    // give the query a unique name
+    name: "fetch-user",
+    text: "SELECT * FROM recipe WHERE id = $1",
+    values: [id],
+  });
+  return result.rows[0];
 };
 
-createTransaction = (values, callback = () => {}) => {
-  client.query(
+createTransaction = async (values, callback = undefined) => {
+  const result = await client.query(
     "INSERT INTO transaction_hash(txid, data) VALUES($1, $2) RETURNING *",
-    values,
-    callback
+    values
   );
+  return result.rows[0];
 };
 
-getTransaction = (txid, callback = () => {}) => {
-  client.query(
-    {
-      // give the query a unique name
-      name: "fetch-txid",
-      text: "SELECT * FROM transaction_hash WHERE txid = $1",
-      values: [txid],
-    },
-    callback
-  );
+getTransaction = async (txid, callback = undefined) => {
+  const result = await client.query({
+    // give the query a unique name
+    name: "fetch-txid",
+    text: "SELECT * FROM transaction_hash WHERE txid = $1",
+    values: [txid],
+  });
+  return result.rows[0];
 };
 
 module.exports = {
