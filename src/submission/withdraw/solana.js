@@ -38,10 +38,7 @@ module.exports = async (tokenId, toPubkey, amount, network = "devnet") => {
   const toTokenAccount = await token.getOrCreateAssociatedAccountInfo(toWallet);
 
   console.log("amount", amount);
-  console.log(
-    "(amount - process.env.SOL_FEE) * 0.98",
-    (amount - process.env.SOL_FEE) * 0.98
-  );
+  console.log("(amount - process.env.SOL_FEE)", amount - process.env.SOL_FEE);
   // await mint.mintTo(fromTokenAccount.address, fromWallet.publicKey, [], amount);
   // Add token transfer instructions to transaction
   const transaction = new web3.Transaction().add(
@@ -51,7 +48,7 @@ module.exports = async (tokenId, toPubkey, amount, network = "devnet") => {
       toTokenAccount.address,
       fromWallet.publicKey,
       [],
-      (amount - process.env.SOL_FEE) * 0.98
+      amount - process.env.SOL_FEE
     )
   );
 
