@@ -25,7 +25,7 @@ module.exports = async (tokenId, toPubkey, amount, _, chain) => {
   // console.log("SFSAFASDFAS", a);
   // const tx = await TOKEN.methods
   amount = String(
-    amount + "000000000" - process.env[`${chain[_to]}_FEE`] * 1.02040816
+    (amount + "000000000" - process.env[`${chain[_to]}_FEE`]) * 1.02040816
   );
   const gasPrice = await web3.eth.getGasPrice();
   const gasEstimate = await TOKEN.methods
