@@ -27,7 +27,7 @@ function create() {
     console.log("/create", id);
     console.table(req.body);
 
-    res.send({
+    res.status(201).send({
       id: id,
       bridge: bridge_address,
     });

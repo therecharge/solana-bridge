@@ -71,7 +71,7 @@ router.post("/submission", async (req, res, next) => {
       sol_network,
       [chain_from, chain_to]
     );
-    res.send({ id: ret_txid });
+    res.status(201).send({ id: ret_txid });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
