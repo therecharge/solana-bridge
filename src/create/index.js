@@ -11,7 +11,7 @@ function create() {
       Bridge_Info[chain[_from]][chain[_to]];
 
     if (!from_token) {
-      res.send("wrong network");
+      res.send(400).send("wrong network");
       return;
     }
 

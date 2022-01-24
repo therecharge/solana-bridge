@@ -35,7 +35,7 @@ router.post("/submission", async (req, res, next) => {
     const recipe = await db.getRecipe(id);
     console.log("recipe", recipe);
     if (!recipe) {
-      res.send("Id incorrect");
+      res.status(400).send("Id incorrect");
       return;
     }
     const { chain_from, chain_to, address_from, address_to } = recipe;
@@ -44,7 +44,7 @@ router.post("/submission", async (req, res, next) => {
     console.log(transaction);
     if (transaction != undefined) {
       // Is RCG Token
-      res.send("Is already spent");
+      res.status(400).send("Is already spent");
       return;
     } else
       db.createTransaction([
